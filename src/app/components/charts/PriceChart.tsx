@@ -52,7 +52,7 @@ export default function PriceChart({
             ))}
           </Pie>
           <Tooltip
-            formatter={(v: number) => `$${v.toFixed(2)}`}
+            formatter={(v) => `$${Number(v).toFixed(2)}`}
             contentStyle={{
               borderRadius: 12,
               border: 'none',
@@ -73,7 +73,7 @@ export default function PriceChart({
           <XAxis dataKey="name" tick={{ fontSize: 12 }} />
           <YAxis tick={{ fontSize: 12 }} />
           <Tooltip
-            formatter={(v: number) => `$${v.toFixed(2)}`}
+            formatter={(v) => `$${Number(v).toFixed(2)}`}
             contentStyle={{ borderRadius: 12, border: 'none' }}
           />
           <Bar dataKey="value" radius={[8, 8, 0, 0]}>
@@ -100,7 +100,7 @@ export default function PriceChart({
         <XAxis dataKey="name" tick={{ fontSize: 12 }} />
         <YAxis tick={{ fontSize: 12 }} />
         <Tooltip
-          formatter={(v: number) => `$${v.toFixed(2)}`}
+         formatter={(v) => `$${Number(v).toFixed(2)}`}
           contentStyle={{ borderRadius: 12, border: 'none' }}
         />
         <Area
