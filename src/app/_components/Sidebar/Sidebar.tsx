@@ -28,7 +28,7 @@ type NavItem = {
 
 const mainPaths: NavItem[] = [
   { href: '/',          label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/stocks',    label: 'Stocks',    icon: TrendingUp },  // ← stocks مش stock
+  { href: '/stock',    label: 'Stocks',    icon: TrendingUp },  // ← stocks مش stock
   { href: '/crypto',    label: 'Crypto',    icon: Bitcoin },
   { href: '/markets',   label: 'Markets',   icon: Globe },
   { href: '/watchlist', label: 'Watchlist', icon: Star },

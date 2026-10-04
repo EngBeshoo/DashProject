@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "./_components/Navbar/Navbar";
 import Footer from "./_components/Footer/Footer";
 import Sidebar from "./_components/Sidebar/Sidebar";
 import { ThemeProvider } from "next-themes";
@@ -39,7 +38,6 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
 
           <div className="flex flex-1">
             <Sidebar />
