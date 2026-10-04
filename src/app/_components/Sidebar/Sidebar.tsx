@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import ThemeToggle from '../../components/ThemeToggle';
 import {
   LayoutDashboard,
   TrendingUp,
@@ -27,7 +28,7 @@ type NavItem = {
 
 const mainPaths: NavItem[] = [
   { href: '/',          label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/stock',    label: 'Stock',    icon: TrendingUp },
+  { href: '/stocks',    label: 'Stocks',    icon: TrendingUp },  // ← stocks مش stock
   { href: '/crypto',    label: 'Crypto',    icon: Bitcoin },
   { href: '/markets',   label: 'Markets',   icon: Globe },
   { href: '/watchlist', label: 'Watchlist', icon: Star },
@@ -45,7 +46,7 @@ export default function Sidebar() {
   const [open, setOpen] = useState(false);
 
   const isActive = (href: string) =>
-    pathname === href || pathname.startsWith(`${href}/`);
+    href === '/' ? pathname === '/' : pathname.startsWith(href);
 
   const renderItem = (item: NavItem) => {
     const Icon = item.icon;
@@ -109,7 +110,7 @@ export default function Sidebar() {
         `}
       >
         <div className="flex h-full flex-col">
-          {/* Logo */}
+          {/* Logo + Theme Toggle */}
           <div className="flex items-center justify-between border-b border-white/10 px-5 py-5">
             <Link
               href="/"
@@ -117,21 +118,26 @@ export default function Sidebar() {
               className="flex items-center gap-3"
             >
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10">
-                <LineChart size={25} />
+                <LineChart size={22} />
               </div>
               <div>
-                <h1 className="text-xl font-bold tracking-wide">MarketHub</h1>
-                <p className="text-xs text-blue-200">Stocks & Crypto</p>
+                <h1 className="text-lg font-bold tracking-wide">MarketHub</h1>
+                <p className="text-xs text-blue-200">Stocks &amp; Crypto</p>
               </div>
             </Link>
 
-            <button
-              onClick={() => setOpen(false)}
-              aria-label="Close menu"
-              className="rounded-lg p-2 text-blue-100 hover:bg-white/10 lg:hidden"
-            >
-              <X size={21} />
-            </button>
+            <div className="flex items-center gap-1">
+              <ThemeToggle />
+
+              {/* Close mobile */}
+              <button
+                onClick={() => setOpen(false)}
+                aria-label="Close menu"
+                className="rounded-lg p-2 text-blue-100 hover:bg-white/10 lg:hidden"
+              >
+                <X size={20} />
+              </button>
+            </div>
           </div>
 
           {/* Navigation */}
@@ -144,7 +150,9 @@ export default function Sidebar() {
             <p className="mb-3 mt-8 px-3 text-xs font-semibold uppercase tracking-wider text-blue-300">
               Management
             </p>
-            <nav className="space-y-1.5">{managementPaths.map(renderItem)}</nav>
+            <nav className="space-y-1.5">
+              {managementPaths.map(renderItem)}
+            </nav>
           </div>
 
           {/* Profile */}
